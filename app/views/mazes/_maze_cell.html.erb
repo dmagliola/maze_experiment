@@ -1,0 +1,17 @@
+<%
+  cell = maze.cells[coords]
+  cell_classes = [:up, :down, :left, :right].select{|direction| !cell.can_walk?(direction)}.map{|direction| "wall_#{direction}"}
+  cell_classes << "solution" if coords.in?(solution)
+  cell_classes << "cell"
+
+  cell_contents = if coords == maze.entrance
+                    "E"
+                  elsif coords == maze.exit
+                    "X"
+                  else
+                    ""
+                  end
+%>
+<div class="<%= cell_classes.join(" ") %>">
+  <%= cell_contents %>
+</div>

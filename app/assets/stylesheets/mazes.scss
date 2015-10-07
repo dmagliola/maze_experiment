@@ -1,0 +1,28 @@
+// Place all the styles related to the mazes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.maze {
+  border: 1px solid black;
+  float: left;
+
+  .cell {
+    float: left;
+    width: 20px; height: 20px;
+    border: 1px solid transparent;
+    text-align: center;
+    padding: 10px;
+
+    &.wall_up { border-top-color: black; }
+    &.wall_left { border-left-color: black; }
+    &.wall_right { border-right-color: black; }
+    &.wall_down { border-bottom-color: black; }
+  }
+
+  .row_clearer { clear: both; }
+
+  &.solved {
+    .cell.solution { background-color: #aaf; }
+  }
+}
+
+.show_solution { display: inline-block; padding: 20px; margin: 30px 0 0 30px;}

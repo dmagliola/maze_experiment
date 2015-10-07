@@ -1,0 +1,8 @@
+<div class="maze">
+  <% maze.size.times do |y|
+       maze.size.times do |x| %>
+         <%= render 'maze_cell', maze: maze, coords: [x,y], solution: solution %>
+    <% end %>
+    <div class="row_clearer"></div>
+  <% end %>
+</div>

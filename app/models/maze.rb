@@ -1,4 +1,8 @@
 class Maze
+  include ActiveModel::Model
+
+  DEFAULT_SIZE = 10
+
   attr_accessor :cells
   attr_accessor :size
   attr_accessor :entrance
