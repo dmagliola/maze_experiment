@@ -18,6 +18,12 @@ class Maze
       end
     end
 
+    # Maze generation 101: Simplest maze: Spanning tree!
+    # Start moving randomly from the entrance to the exit, moving only onto unvisited cells, and backtrack
+    #   to make sure we visit all cells.
+    # Every time we go to an unvisited cell, remove the wall between that cell and the previous one.
+    #
+    # This is a very simple maze, every cell can be reached from the entrance by following one and only one path
     @entrance = [0, (rand * @size).floor] # random cell on left wall
     @cells[@entrance].visited = true
     @exit = [@size -1, (rand * @size).floor] # random cell on left wall
@@ -27,7 +33,7 @@ class Maze
   end
 
   def generate_step(cur_pos, trail)
-    return if cur_pos == @exit # If we reached the exit, we're done.
+    return if cur_pos == @exit # If we reached the exit, we're done with this path, backtrack and fill the rest.
 
     cell = @cells[cur_pos]
 
