@@ -50,7 +50,7 @@ class Maze
   end
 
   # This is not pretty code, but it's a useful debug output
-  def console_output
+  def console_output(solution_path = nil)
     @size.times do |y|
       if y == 0
         # print first row "roofs"
@@ -65,7 +65,7 @@ class Maze
       @size.times do |x|
         cell = @cells[[x, y]]
         print x == 0 && !cell.can_walk?(:left) ? "|" : " "
-        print console_output_cell_contents(cell)
+        print console_output_cell_contents(cell.coords, solution_path)
         print cell.can_walk?(:right) ? " " : "|"
       end
       puts ""
@@ -79,9 +79,10 @@ class Maze
     end
   end
 
-  def console_output_cell_contents(cell)
-    return "E" if cell.coords == @entrance
-    return "X" if cell.coords == @exit
+  def console_output_cell_contents(coords, solution_path)
+    return "E" if coords == @entrance
+    return "X" if coords == @exit
+    return "P" if solution_path.present? && coords.in?(solution_path)
     return " "
   end
 end
